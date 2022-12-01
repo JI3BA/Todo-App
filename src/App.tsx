@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
+import TodoList from './component/TodoList/TodoList';
+import './styles/App.scss';
+import './fonts/Fonts.scss';
 
-function App() {
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <h1>Hi my App</h1>
+    <div className="container">
+      <TodoList />
     </div>
   );
 }

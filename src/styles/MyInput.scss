@@ -1,0 +1,16 @@
+@import './TodoList.scss';
+
+.input{
+    max-width: 100%;
+    width: 100%;
+    border: $border;
+    font-family: $text-name;
+    color: $text-color-gray;
+    font-weight: $text-bold;
+    padding: 10px;
+    outline: none;
+
+    &:nth-child(1){
+        margin-bottom: 10px;
+    }
+}

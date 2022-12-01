@@ -1,0 +1,42 @@
+$light-gray: rgb(119, 119, 119);
+$text-color-gray: rgb(73, 73, 73);
+$text-name: 'Montserrat';
+$text-bold: 500;
+$border: 2px solid #00e1ff;
+
+@mixin flexColumnCenter(){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexCenter(){
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    max-width: 1270px;
+    width: 100%;
+    @include flexColumnCenter();
+}
+
+.todo-list{
+
+    &__container{
+        width: 100%;
+        font-family: $text-name, sans-serif;
+        color: $text-color-gray;
+        padding-top: 10px;
+    }
+
+    &__inputs{
+        padding-bottom: 10px;
+    }
+
+    &__buttons{
+        @include flexCenter()
+    }
+    
+}

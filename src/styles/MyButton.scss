@@ -1,0 +1,22 @@
+@import './TodoList.scss';
+@import './App.scss';
+
+.button{
+    max-width: 50%;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: $border;
+    font-family: $text-name;
+    color: $text-color-gray;
+    font-weight: $text-bold;
+    transition: 500ms;
+
+    &:hover{
+        border: 2px solid #520cc2;
+    }
+
+    &:active{
+        transform: scale(0.95);
+    }
+}
