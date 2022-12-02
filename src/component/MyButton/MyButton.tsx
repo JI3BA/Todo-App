@@ -3,12 +3,13 @@ import '../../styles/MyButton.scss'
 import '../../fonts/Fonts.scss'
 
 interface ButtonProps{
-    children: React.ReactNode
+    children: React.ReactNode,
+    onClick?: React.MouseEventHandler<HTMLButtonElement>,
 }
 
-const MyButton = ({children}: ButtonProps) => {
+const MyButton = ({children, onClick}: ButtonProps) => {
     return(
-            <button className="button">{children}</button>
+            <button className="button" onClick={onClick}>{children}</button>
     )
 }
 

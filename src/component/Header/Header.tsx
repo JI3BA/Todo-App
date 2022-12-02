@@ -1,18 +1,13 @@
 import {FC} from 'react'
-import MyButton from '../MyButton/MyButton'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
+import NoteForm from '../NoteForm/NoteForm'
 
 const Header: FC = () => {
+
     return(
         <div className='todo-list__header'>
-                <div className='todo-list__inputs'>
-                    <MyInput placeholder='Body'/>
-                    <MyInput placeholder='Title'/>
-                </div>
-                <div className='todo-list__buttons'>
-                    <MyButton>Add Notes</MyButton>
-                </div>
+                <NoteForm />
                 <div>
                     <p className="todo-list__line"></p>
                 </div>
