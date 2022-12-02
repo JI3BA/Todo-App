@@ -3,39 +3,41 @@ import MyButton from '../MyButton/MyButton'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/TodoList.scss'
 
+export interface Note{
+    id?: number,
+    title: string,
+    body: string,
+}
+
 const NoteForm: FC = () => {
-    const [post, setPost] = useState({title: '', body: ''})
+
+    const [note, setNote] = useState<Note>({title: '', body: '', id: Date.now()})
 
     const addNewPost = (event: React.MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault()
         
         const newPost = {
-            ...post,
-            id: Date.now()
+            ...note
         }
-
         //create(newPost)
-        setPost({title:'', body: ''})
+        console.log(note);
+        
+        setNote({title:'', body: ''})
     }
 
     const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setPost({...post, title: event.target.value})
+        setNote({...note, title: event.target.value, id: Date.now()})
     }
 
     const handleChangeBody = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setPost({...post, body: event.target.value})
-    }
-
-    const handleFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
-        console.log(event.currentTarget);
-        
+        setNote({...note, body: event.target.value, id: Date.now()})
     }
 
     return(
         <form className='form'>
             <div className='todo-list__inputs'>
-                    <MyInput placeholder='Body' value={post.title} onChange={handleChangeTitle}/>
-                    <MyInput placeholder='Title' value={post.body} onChange={handleChangeBody}/>
+                    <MyInput placeholder='Body' value={note.title} onChange={handleChangeTitle}/>
+                    <MyInput placeholder='Title' value={note.body} onChange={handleChangeBody}/>
                 </div>
                 <div className='todo-list__buttons'>
                     <MyButton onClick={addNewPost}>Add Note</MyButton>

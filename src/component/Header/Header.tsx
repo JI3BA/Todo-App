@@ -1,9 +1,16 @@
-import {FC} from 'react'
+import {FC, useState} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
-import NoteForm from '../NoteForm/NoteForm'
+import NoteForm, { Note } from '../NoteForm/NoteForm'
+
 
 const Header: FC = () => {
+
+    const [notes, setNotes] = useState<Array<Note>>([])
+
+    const createNote = (newNote: Note) => {
+         setNotes([...notes, newNote])
+    }
 
     return(
         <div className='todo-list__header'>

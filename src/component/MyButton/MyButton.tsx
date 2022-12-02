@@ -7,9 +7,9 @@ interface ButtonProps{
     onClick?: React.MouseEventHandler<HTMLButtonElement>,
 }
 
-const MyButton = ({children, onClick}: ButtonProps) => {
+const MyButton = ({children, onClick, ...rest}: ButtonProps) => {
     return(
-            <button className="button" onClick={onClick}>{children}</button>
+            <button className="button" onClick={onClick} {...rest} >{children}</button>
     )
 }
 
