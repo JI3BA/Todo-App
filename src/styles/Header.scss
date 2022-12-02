@@ -1,0 +1,26 @@
+@import './TodoList.scss';
+
+.todo-list{
+
+    &__header{
+        width: 100%;
+        font-family: $text-name, sans-serif;
+        color: $text-color-gray;
+        padding-top: 10px;
+    }
+
+    &__inputs{
+        padding-bottom: 10px;
+    }
+
+    &__buttons{
+        @include flexCenter()
+    }
+
+    &__line{
+        height: 2px;
+        background-color: $text-color-gray;
+        margin: 20px 0;
+    }
+    
+}

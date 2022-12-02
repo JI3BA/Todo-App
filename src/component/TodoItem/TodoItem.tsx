@@ -1,21 +1,18 @@
 import {FC} from 'react'
 import MyButton from '../MyButton/MyButton'
+import '../../styles/TodoItem.scss'
 
-interface ItemProps{
-    children: React.ReactNode
-}
-
-const TodoItem = ({children}: ItemProps) => {
+const TodoItem: FC = () => {
     return(
-        <div className='todo-item__container'>
+        <div className='todo-item'>
             <p className="todo-item__title">Title</p>
             <div>
                 <p className="todo-item__line"></p>
             </div>
             <p className='todo-item__title'>Body</p>
-            <div>
+            <div className='todo-item__buttons'>
                 <MyButton>Open</MyButton>
-                <MyButton>Change</MyButton>
+                <MyButton>Edit</MyButton>
                 <MyButton>Delete</MyButton>
             </div>
         </div>

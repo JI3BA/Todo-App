@@ -1,0 +1,7 @@
+@import './TodoList.scss';
+
+.main{
+    @include flexColumnCenter();
+    max-width: 100%;
+    width: 100%;
+}
