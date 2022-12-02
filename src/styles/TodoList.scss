@@ -24,7 +24,7 @@ $border: 2px solid #00e1ff;
 
 .todo-list{
 
-    &__container{
+    &__header{
         width: 100%;
         font-family: $text-name, sans-serif;
         color: $text-color-gray;
@@ -37,6 +37,12 @@ $border: 2px solid #00e1ff;
 
     &__buttons{
         @include flexCenter()
+    }
+
+    &__line{
+        height: 2px;
+        background-color: $text-color-gray;
+        margin: 20px 0;
     }
     
 }
