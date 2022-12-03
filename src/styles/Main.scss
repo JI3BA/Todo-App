@@ -1,7 +1,30 @@
 @import './TodoList.scss';
+@import './MyButton.scss';
 
 .main{
     @include flexColumnCenter();
     max-width: 100%;
     width: 100%;
+}
+
+.todo-item{
+    max-width: 100%;
+    width: 100%;
+    color: $text-color-gray;
+    border: $border;
+    margin-bottom: 10px;
+
+    &__title{
+        padding: 10px;
+    }
+
+    &__line{
+        height: 2px;
+        background-color: $light-blue
+    }
+
+    &__buttons{
+        @include flexBetween();
+        padding: 10px;
+    }
 }

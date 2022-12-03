@@ -1,10 +1,13 @@
-import {FC, useState} from 'react'
+import {FC, useState, useEffect} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
 import NoteForm, { Note } from '../NoteForm/NoteForm'
 
+interface HeaderProps{
+    notesCall(notes: Array<Note>): void
+}
 
-const Header: FC = () => {
+const Header: FC<HeaderProps> = (props) => {
 
     const [notes, setNotes] = useState<Array<Note>>([])
 
@@ -12,9 +15,11 @@ const Header: FC = () => {
          setNotes([...notes, newNote])
     }
 
+    useEffect(() => props.notesCall(notes), [notes])
+
     return(
         <div className='todo-list__header'>
-                <NoteForm />
+                <NoteForm create={createNote}/>
                 <div>
                     <p className="todo-list__line"></p>
                 </div>

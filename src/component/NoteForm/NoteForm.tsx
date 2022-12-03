@@ -9,7 +9,11 @@ export interface Note{
     body: string,
 }
 
-const NoteForm: FC = () => {
+interface NoteFormProps{
+    create(newNote: Note): void
+}
+
+const NoteForm: FC<NoteFormProps> = (props) => {
 
     const [note, setNote] = useState<Note>({title: '', body: '', id: Date.now()})
 
@@ -19,10 +23,9 @@ const NoteForm: FC = () => {
         const newPost = {
             ...note
         }
-        //create(newPost)
-        console.log(note);
-        
-        setNote({title:'', body: ''})
+
+        props.create(newPost)
+        setNote({title:'', body: '', id: 0})
     }
 
     const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
