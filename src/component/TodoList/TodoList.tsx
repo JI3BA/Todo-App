@@ -1,38 +1,62 @@
-import React, {FC, useState, useEffect} from 'react'
+import React, {FC, useState} from 'react'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
 import '../../styles/TodoList.scss'
-import { Note } from '../NoteForm/NoteForm'
 
-interface TodoListProps{
-    notesCall(notes: Note[]): void,
-    notes: Note[]
+export interface Note{
+    id: number,
+    title: string,
+    body: string,
+    checked: boolean
 }
 
-const TodoList: FC<TodoListProps> = () => {
-    const [notes, setNotes] = useState<Array<Note>>([])
+const TodoList: FC = () => {
+    const [notes, setNotes] = useState<Note[]>([])
+    const [notesEdit, setNotesEdit] = useState<Note['id'] | null>(null);
 
-    useEffect(() => {
-        const saved = JSON.parse(localStorage.getItem('notes') || '[]') as Note[]
-        setNotes(saved)
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(notes))
-    }, [notes])
-
-    const notesCall = (notes: Note[]) => {
-        setNotes(notes)
+    const addNewNote = ({title, body}: Omit<Note, 'id' | 'checked'>): void => {
+        setNotes([...notes, {title, body, id: Date.now(), checked: false}])
     }
+    const selectNotesEdit = (id: Note['id']) => {
+        setNotesEdit(id);
+      };
+
+    const changeNote = ({ title, body }: Omit<Note, 'id' | 'checked'>) => {
+        setNotes(
+            notes.map((note) => {
+            if (note.id === notesEdit) {
+              return { ...note, title, body };
+            }
+            return note;
+          })
+        );
+        setNotesEdit(null);
+      };
 
     const removeNote = (id: Note['id']) => {
-        setNotes(prev => prev.filter(note => note.id !== id))
+        setNotes(note => note.filter(note => note.id !== id))
+    }
+
+    const checkNote = (id: Note['id']) => {
+        setNotes(
+            notes.map((note) => {
+                if(note.id === id){
+                    return { ...note, checked: !note.checked }
+                }
+                  return note
+                })
+            )
     }
 
     return(
         <div className="wrapper">
-            <Header notesCall={notesCall}/>
-            <Main notes={notes} remove={removeNote}/>
+            <Header mode='add' addNewNote={addNewNote} />
+            <Main notes={notes} 
+                removeNote={removeNote} 
+                checkNote={checkNote} 
+                selectNotesEdit={selectNotesEdit} 
+                notesEdit={notesEdit}
+                changeNote={changeNote}/>
         </div>
     )
 }

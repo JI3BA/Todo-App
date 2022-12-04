@@ -6,7 +6,9 @@
         width: 100%;
         font-family: $text-name, sans-serif;
         color: $text-color-gray;
-        padding-top: 10px;
+        border: $border;
+        padding: 10px;
+        margin-top: 20px;
     }
 
     &__inputs{

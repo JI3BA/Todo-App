@@ -3,13 +3,14 @@ import '../../styles/MyInput.scss'
 interface InputProps{
     placeholder: string,
     value?: string,
+    name?: string,
     onChange?: React.ChangeEventHandler
 }
 
 
-const MyInput = ({placeholder, value, ...rest}: InputProps) => {
+const MyInput = ({placeholder, value, name, ...rest}: InputProps) => {
     return(
-        <input className='input' type='text' placeholder={placeholder} value={value} {...rest}/>
+        <input className='input' type='text' placeholder={placeholder} value={value} name={name} {...rest}/>
     )
 }
 

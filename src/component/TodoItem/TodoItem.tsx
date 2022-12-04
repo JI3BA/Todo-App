@@ -1,12 +1,12 @@
 import {FC} from 'react'
 import MyButton from '../MyButton/MyButton'
 import '../../styles/TodoItem.scss'
-import { Note } from '../NoteForm/NoteForm'
+import { Note } from '../TodoList/TodoList'
 
 const TodoItem: FC<Note> = (notes) => {
     return(
         <div className='todo-item'>
-            <p className="todo-item__title">{}. {notes.title}</p>
+            <p className="todo-item__title">{notes.title}</p>
             <div>
                 <p className="todo-item__line"></p>
             </div>
