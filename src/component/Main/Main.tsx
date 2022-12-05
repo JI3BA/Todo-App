@@ -1,20 +1,12 @@
 import {FC} from 'react'
+import { useNote } from '../../context/contexts'
 import '../../styles/Main.scss'
 import Header from '../Header/Header'
 import MyButton from '../MyButton/MyButton'
-import { Note } from '../TodoList/TodoList'
 
-interface NoteItemProps{
-    notes: Note[],
-    notesEdit: Note['id'] | null,
-    removeNote(id: Note['id']): void,
-    checkNote(id: Note['id']): void,
-    selectNotesEdit(id: Note['id']): void,
-    changeNote({ title, body }: Omit<Note, 'id' | 'checked'>):void,
-}
 
-const Main: FC<NoteItemProps> = ({notes, removeNote, checkNote, selectNotesEdit, notesEdit, changeNote}) => {  
-
+const Main: FC = () => {  
+    const {notes, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
     return(
         <div className='main'>
             {notes.length === 0 ? 
@@ -23,7 +15,7 @@ const Main: FC<NoteItemProps> = ({notes, removeNote, checkNote, selectNotesEdit,
             </div>
             :
             notes.map(note => {
-                if(note.id === notesEdit) return <Header key={note.id} mode='edit' changeNote={changeNote} editNote={note}/>
+                if(note.id === notesEdit) return <Header key={note.id} mode='edit' editNote={note}/>
                 return(
                     <div className='todo-item' key={note.id}>
                         <p className="todo-item__title" 
@@ -36,7 +28,7 @@ const Main: FC<NoteItemProps> = ({notes, removeNote, checkNote, selectNotesEdit,
                             <p className="todo-item__line"></p>
                         </div>
                         <p className='todo-item__body' onClick={() => checkNote(note.id)}>{note.body}</p>
-                        <p className='todo-item__body'>Tags</p>
+                        <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span> {note.tag}</p>
                         <div className='todo-item__buttons'>
                             <MyButton>Open</MyButton>
                             <MyButton onClick={() => selectNotesEdit(note.id)}>Edit</MyButton>

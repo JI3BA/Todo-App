@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import MyButton from '../MyButton/MyButton'
 import '../../styles/TodoItem.scss'
-import { Note } from '../TodoList/TodoList'
+import { Note } from '../../context/contexts/NoteContext'
 
 const TodoItem: FC<Note> = (notes) => {
     return(

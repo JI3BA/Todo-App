@@ -1,0 +1,17 @@
+@import './TodoList.scss';
+
+.filter{
+    &__container{
+        margin-top: 10px;
+        padding: 0 10px;
+        border: $border-violet;
+        min-width: 100%;
+        width: 100%;
+    }
+
+    &__line{
+        height: 2px;
+        background-color: $text-color-gray;
+        margin: 20px 0;
+    }
+}

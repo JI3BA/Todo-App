@@ -17,12 +17,5 @@
 
     &__buttons{
         @include flexCenter()
-    }
-
-    &__line{
-        height: 2px;
-        background-color: $text-color-gray;
-        margin: 20px 0;
-    }
-    
+    } 
 }
