@@ -2,6 +2,7 @@ import {FC} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Filter.scss'
 
+// onChange={(e => setNotes({...notes, tags: e.target.value}))}
 
 const Filter: FC = () => {
     return(

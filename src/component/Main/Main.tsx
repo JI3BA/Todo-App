@@ -28,7 +28,11 @@ const Main: FC = () => {
                             <p className="todo-item__line"></p>
                         </div>
                         <p className='todo-item__body' onClick={() => checkNote(note.id)}>{note.body}</p>
-                        <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span> {note.tag}</p>
+                        <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span>
+                                                         {note.tag.map((item,index) => <span className='todo-item__tag' key={index}>
+                                                            {item}, 
+                                                        </span>)}
+                        </p>
                         <div className='todo-item__buttons'>
                             <MyButton>Open</MyButton>
                             <MyButton onClick={() => selectNotesEdit(note.id)}>Edit</MyButton>

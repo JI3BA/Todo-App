@@ -18,4 +18,14 @@
     &__buttons{
         @include flexCenter()
     } 
+
+    &__tags{
+        @include flexStart()
+    }
+}
+
+.tags{
+    &__container{
+        @include flexStart()
+    }
 }

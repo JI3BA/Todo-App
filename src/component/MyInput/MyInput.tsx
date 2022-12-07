@@ -4,7 +4,8 @@ interface InputProps{
     placeholder: string,
     value?: string,
     name?: string,
-    onChange?: React.ChangeEventHandler
+    onChange?: React.ChangeEventHandler,
+    onKeyDown?: React.KeyboardEventHandler,
 }
 
 

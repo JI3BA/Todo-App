@@ -11,6 +11,7 @@
     color: $text-color-gray;
     font-weight: $text-bold;
     transition: 500ms;
+    cursor: pointer;
 
     &:hover{
         border: $border-violet;

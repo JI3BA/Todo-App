@@ -29,6 +29,20 @@
         }
     }
 
+    &__tag{
+        border: $border;
+        border-radius: 5px;
+        padding: 5px;
+        margin-right: 3px;
+
+        &--close{
+            padding: 3px 7px;
+            border: $border-violet;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+
     &__line{
         height: 2px;
         background-color: $light-blue
