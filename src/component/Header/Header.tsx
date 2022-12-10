@@ -2,7 +2,7 @@ import {FC, useState} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
 import MyButton from '../MyButton/MyButton'
-import { Note, tag } from '../../context/contexts/NoteContext'
+import { Note, TagsNote } from '../../context/contexts/NoteContext'
 import { useNote } from '../../context/contexts'
 
 interface addHeaderProps{
@@ -17,14 +17,14 @@ interface EditHeaderProps{
 type HeaderProps = addHeaderProps | EditHeaderProps;
 
 const Header: FC<HeaderProps> = (props) => {
-    const {addNewNote, changeNote}  = useNote()
+    const {addNewNote, addTagsNote, changeNote}  = useNote()
     const isEdit = props.mode === 'edit';
-    const [note, setNote] = useState(isEdit ? props.editNote : {title: '', body: '', tag: ['']})
-    const [tag, setTag] = useState({tag: ''})
+    const [note, setNote] = useState(isEdit ? props.editNote : {title: '', body: '', tagArray: []})
+    // const [tag, setTag] = useState({tag: ''})
 
     // For HASHTAGS INPUT
-    const [tags, setTags] = useState<tag[]>([])
-    const [inputTag , setInputTag] = useState<tag>('')
+    // const [tags, setTags] = useState({tag: ['']})
+    const [inputTag , setInputTag] = useState('')
     const [isKeyReleased, setIsKeyReleased] = useState(false);
 
     const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,10 +33,11 @@ const Header: FC<HeaderProps> = (props) => {
         if (isEdit) {
             return changeNote(note);
         }
-        
+
         addNewNote(note);
-        setTags([])
-        setNote({title: '', body: '', tag: ['']});
+        //addTagsNote(tags)
+        //setTags({tag: ['']})
+        setNote({title: '', body: '', tagArray: []});
     };
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,29 +55,31 @@ const Header: FC<HeaderProps> = (props) => {
         // @ts-ignore
         const trimmedInput = inputTag.trim();
       
-        if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
+        if (key === ',' && trimmedInput.length && !note.tagArray.includes(trimmedInput)) {
           e.preventDefault();
     
-          setTags([...tags, trimmedInput]);
+          //setTags([...tag, trimmedInput]);
+          setNote({...note, tagArray: [...note.tagArray, inputTag]})
           setInputTag('');
         }
         // @ts-ignore
-        if (key === "Backspace" && !inputTag.length && tags.length && isKeyReleased) {
-          const tagsCopy: tag[] = [...tags];
+        if (key === "Backspace" && !inputTag.length && note.tagArray.length && isKeyReleased) {
+          const tagsCopy = [...note.tagArray];
           const poppedTag = tagsCopy.pop();
 
           e.preventDefault();
 
-          setTags(tagsCopy);
+          setNote({...note, tagArray: tagsCopy});
+          // @ts-ignore
           setInputTag(poppedTag);
         }
       
         setIsKeyReleased(false);
-      };
+    };
       
-      const onKeyUp = () => {
+    const onKeyUp = () => {
         setIsKeyReleased(true);
-      }
+    }
     
     return(
         <div className='todo-list__header'>
@@ -85,14 +88,15 @@ const Header: FC<HeaderProps> = (props) => {
                             <MyInput placeholder='Title' value={note.title} onChange={onChange} name='title'/>
                             <MyInput placeholder='Body' value={note.body} onChange={onChange} name='body'/>
                             <div className='todo-list__tags'>
-                               {tags.map((tag, index) => <div className='tags__container' key={index}>
-                                                            {tag},
+                               {note.tagArray.map((item, index) => <div className='tags__container' key={index}>
+                                                            {item},
                                                         </div>)}
                             </div>
                                 <MyInput placeholder='Tags'
                                         value={inputTag} 
                                         onChange={onChangeTag} 
-                                        onKeyDown={onKeyDown} 
+                                        onKeyDown={onKeyDown}
+                                        onKeyUp={onKeyUp} 
                                         name='tag'/>
                             
                     </div>

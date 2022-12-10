@@ -1,6 +1,5 @@
-import React, {FC, useState, useMemo} from 'react';
-import Filter from '../../component/Filter/Filter';
-import { NoteContext , Note, tag } from './NoteContext'
+import React, {FC, useState, useMemo, useEffect} from 'react';
+import { NoteContext , Note, TagsNote } from './NoteContext'
 
 interface StoreProviderProps {
   children: React.ReactNode;
@@ -8,26 +7,29 @@ interface StoreProviderProps {
 
 export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
   const [notes, setNotes] = useState<Note[]>([])
-  const [tags, setTags] = useState<tag[]>([])
+  const [tags, setTags] = useState<TagsNote[]>([])
   const [notesEdit, setNotesEdit] = useState<Note['id'] | null>(null);
 
-  const addNewNote = ({title, body, tag}: Omit<Note, 'id' | 'checked'>): void => {
-      setNotes([...notes, {title, body, id: Date.now(), checked: false, tag}])  
+  const addNewNote = ({title, body, tagArray}: Omit<Note, 'id' | 'checked'>): void => {
+      setNotes([...notes, {title, body, id: Date.now(), checked: false, tagArray}])  
+      console.log(notes);     
   }
 
-  // const addTagsNote = ({ tag }: Omit<Note, 'id' | 'title' | 'body' | 'checked'>): void => {
-  //   setTags([...tags, {tag}])
-  // }
+  useEffect(() => console.log(notes), [notes])
+
+  const addTagsNote = ({tag}: TagsNote): void => {
+    setTags([...tags, {tag}])
+  }
 
   const selectNotesEdit = (id: Note['id']) => {
       setNotesEdit(id);
     };
 
-  const changeNote = ({ title, body, tag }: Omit<Note, 'id' | 'checked'>) => {
+  const changeNote = ({ title, body, tagArray }: Omit<Note, 'id' | 'checked'>) => {
       setNotes(
           notes.map((note) => {
           if (note.id === notesEdit) {
-            return { ...note, title, body, tag };
+            return { ...note, title, body, tagArray };
           }
           return note;
         })
@@ -36,7 +38,7 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
     };
 
   const removeNote = (id: Note['id']) => {
-      setNotes(note => note.filter(note => note.id !== id))
+    setNotes(note => note.filter(note => note.id !== id))
   }
 
   // const removeTag = (id: Note['id']) => {
@@ -62,6 +64,7 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
   const value = useMemo(
     () => ({
         notesEdit,
+        addTagsNote,
         notes,
         tags,
         removeNote,
@@ -70,7 +73,7 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
         addNewNote,
         selectNotesEdit,
     }),
-    [notes, tags, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit]
+    [notes, tags, addTagsNote, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit]
   );
 
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;

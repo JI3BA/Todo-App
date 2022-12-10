@@ -6,6 +6,7 @@ interface InputProps{
     name?: string,
     onChange?: React.ChangeEventHandler,
     onKeyDown?: React.KeyboardEventHandler,
+    onKeyUp?: React.KeyboardEventHandler
 }
 
 
