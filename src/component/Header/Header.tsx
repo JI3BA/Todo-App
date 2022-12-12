@@ -2,7 +2,7 @@ import {FC, useState} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
 import MyButton from '../MyButton/MyButton'
-import { Note, TagsNote } from '../../context/contexts/NoteContext'
+import { Note } from '../../context/contexts/NoteContext'
 import { useNote } from '../../context/contexts'
 
 interface addHeaderProps{
@@ -17,13 +17,11 @@ interface EditHeaderProps{
 type HeaderProps = addHeaderProps | EditHeaderProps;
 
 const Header: FC<HeaderProps> = (props) => {
-    const {addNewNote, addTagsNote, changeNote}  = useNote()
+    const {addNewNote, changeNote}  = useNote()
     const isEdit = props.mode === 'edit';
     const [note, setNote] = useState(isEdit ? props.editNote : {title: '', body: '', tagArray: []})
-    // const [tag, setTag] = useState({tag: ''})
 
     // For HASHTAGS INPUT
-    // const [tags, setTags] = useState({tag: ['']})
     const [inputTag , setInputTag] = useState('')
     const [isKeyReleased, setIsKeyReleased] = useState(false);
 
@@ -35,8 +33,6 @@ const Header: FC<HeaderProps> = (props) => {
         }
 
         addNewNote(note);
-        //addTagsNote(tags)
-        //setTags({tag: ['']})
         setNote({title: '', body: '', tagArray: []});
     };
 
@@ -57,8 +53,7 @@ const Header: FC<HeaderProps> = (props) => {
       
         if (key === ',' && trimmedInput.length && !note.tagArray.includes(trimmedInput)) {
           e.preventDefault();
-    
-          //setTags([...tag, trimmedInput]);
+
           setNote({...note, tagArray: [...note.tagArray, inputTag]})
           setInputTag('');
         }

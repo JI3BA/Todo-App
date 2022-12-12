@@ -6,7 +6,7 @@ import MyButton from '../MyButton/MyButton'
 
 
 const Main: FC = () => {  
-    const {notes, tags, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
+    const {notes, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
     return(
         <div className='main'>
             {notes.length === 0 ? 
@@ -29,7 +29,7 @@ const Main: FC = () => {
                         </div>
                         <p className='todo-item__body' onClick={() => checkNote(note.id)}>{note.body}</p>
                         <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span>
-                                                    {note.tagArray.map((item, index) => <span key={index}>{item}</span>)}                             
+                                                    {note.tagArray.map((item, index) => <span key={index} className='todo-item__tag'>{item}</span>)}                             
                         </p>
                         <div className='todo-item__buttons'>
                             <MyButton>Open</MyButton>

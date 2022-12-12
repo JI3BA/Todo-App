@@ -1,5 +1,5 @@
 import React, {FC, useState, useMemo, useEffect} from 'react';
-import { NoteContext , Note, TagsNote } from './NoteContext'
+import { NoteContext , Note} from './NoteContext'
 
 interface StoreProviderProps {
   children: React.ReactNode;
@@ -7,7 +7,6 @@ interface StoreProviderProps {
 
 export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
   const [notes, setNotes] = useState<Note[]>([])
-  const [tags, setTags] = useState<TagsNote[]>([])
   const [notesEdit, setNotesEdit] = useState<Note['id'] | null>(null);
 
   const addNewNote = ({title, body, tagArray}: Omit<Note, 'id' | 'checked'>): void => {
@@ -16,10 +15,6 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
   }
 
   useEffect(() => console.log(notes), [notes])
-
-  const addTagsNote = ({tag}: TagsNote): void => {
-    setTags([...tags, {tag}])
-  }
 
   const selectNotesEdit = (id: Note['id']) => {
       setNotesEdit(id);
@@ -64,16 +59,14 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
   const value = useMemo(
     () => ({
         notesEdit,
-        addTagsNote,
         notes,
-        tags,
         removeNote,
         changeNote,
         checkNote,
         addNewNote,
         selectNotesEdit,
     }),
-    [notes, tags, addTagsNote, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit]
+    [notes, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit]
   );
 
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;

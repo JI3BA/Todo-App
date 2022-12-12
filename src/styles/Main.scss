@@ -33,13 +33,11 @@
         border: $border;
         border-radius: 5px;
         padding: 5px;
-        margin-right: 3px;
-
-        &--close{
-            padding: 3px 7px;
-            border: $border-violet;
-            border-radius: 5px;
-            cursor: pointer;
+        margin: 0 5px;
+        transition: 0.3s;
+        
+        &:hover{
+            box-shadow: inset 0 0 1px 1px $light-blue;
         }
     }
 
