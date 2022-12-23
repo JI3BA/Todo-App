@@ -11,7 +11,7 @@ const Main: FC = () => {
     const filterNote = useMemo<Note[]>(() => {
         console.log('useMemo отработала' + ' ' + filtered);
         if(filtered){
-            return notes.filter(note => note.title.toLowerCase().includes(filtered.toLowerCase()))
+            return notes.filter(note => note.tagArray.some(item => item.toLowerCase().includes(filtered.toLowerCase())))
         }else{
             return notes
         }
