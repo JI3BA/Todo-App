@@ -11,7 +11,7 @@ interface addHeaderProps{
 
 interface EditHeaderProps{
     mode: 'edit',
-    editNote: Omit<Note, 'id' | 'checked'>,
+    editNote: Omit<Note, 'id' | 'checked' | 'filterTag'>,
 }
 
 type HeaderProps = addHeaderProps | EditHeaderProps;

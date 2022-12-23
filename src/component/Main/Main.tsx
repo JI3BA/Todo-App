@@ -1,20 +1,35 @@
-import {FC} from 'react'
-import { useNote } from '../../context/contexts'
+import {FC, useMemo} from 'react'
+import { useNote , Note} from '../../context/contexts'
 import '../../styles/Main.scss'
 import Header from '../Header/Header'
 import MyButton from '../MyButton/MyButton'
 
 
 const Main: FC = () => {  
-    const {notes, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
-    return(
-        <div className='main'>
-            {notes.length === 0 ? 
-            <div style={{marginTop: 10}}>
+    const {notes, filtered, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
+
+    const filterNote = useMemo<Note[]>(() => {
+        console.log('useMemo отработала' + ' ' + filtered);
+        if(filtered){
+            return notes.filter(note => note.title.toLowerCase().includes(filtered.toLowerCase()))
+        }else{
+            return notes
+        }
+    }, [notes, filtered])
+
+    console.log(filterNote)
+
+    if(!filterNote.length){
+        return (
+            <div className='main__title'>
                 <h1>Notes not found!</h1>
             </div>
-            :
-            notes.map(note => {
+        )
+    }
+
+    return(
+        <div className='main'>
+            {filterNote.map(note => {
                 if(note.id === notesEdit) return <Header key={note.id} mode='edit' editNote={note}/>
                 return(
                     <div className='todo-item' key={note.id}>
@@ -38,7 +53,8 @@ const Main: FC = () => {
                         </div>
                     </div>
                 )
-            })}
+            })
+        }
         </div>
     )
 }

@@ -5,31 +5,34 @@ export interface Note{
     title: string,
     body: string,
     checked: boolean,
-    tagArray: string[]
+    tagArray: string[],
 }
 
-export interface TagsNote{
-   tag: string
-}
+export type filterTag = string
 
-// export type tag = string | undefined
 
 export interface NoteContextProps {
   notes: Note[];
+  filtered: filterTag;
   notesEdit: Note['id'] | null;
-  addNewNote: ({ title, body }: Omit<Note, 'id' | 'checked'>) => void;
+  addNewNote: ({ title, body }: Omit<Note, 'id' | 'checked' | 'filterTag'>) => void;
   removeNote: (id: Note['id']) => void;
-  changeNote: ({ title, body }: Omit<Note, 'id' | 'checked'>) => void;
+  changeNote: ({ title, body }: Omit<Note, 'id' | 'checked' | 'filterTag'>) => void;
   checkNote: (id: Note['id']) => void;
   selectNotesEdit: (todoId: Note['id']) => void;
+  setFilter: (filter: filterTag) => void;
+  //filterNote: () => Note[];
 }
 
 export const NoteContext = React.createContext<NoteContextProps>({
     notes: [],
+    filtered: '',
     notesEdit: null,
     addNewNote: () => {},
     removeNote: () => {},
     changeNote: () => {},
     checkNote: () => {},
     selectNotesEdit: () => {},
+    setFilter: () => {},
+    //filterNote: () => [],
 });

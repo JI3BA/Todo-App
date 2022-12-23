@@ -5,6 +5,12 @@
     @include flexColumnCenter();
     max-width: 100%;
     width: 100%;
+
+    &__title{
+        margin-top: 10px;
+        font-family: $text-name, sans-serif;
+        color: $text-color-gray;
+    }
 }
 
 .todo-item{
