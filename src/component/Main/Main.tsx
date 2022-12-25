@@ -9,15 +9,12 @@ const Main: FC = () => {
     const {notes, filtered, removeNote, checkNote, selectNotesEdit, notesEdit} = useNote()
 
     const filterNote = useMemo<Note[]>(() => {
-        console.log('useMemo отработала' + ' ' + filtered);
         if(filtered){
             return notes.filter(note => note.tagArray.some(item => item.toLowerCase().includes(filtered.toLowerCase())))
         }else{
             return notes
         }
     }, [notes, filtered])
-
-    console.log(filterNote)
 
     if(!filterNote.length){
         return (
@@ -33,19 +30,19 @@ const Main: FC = () => {
                 if(note.id === notesEdit) return <Header key={note.id} mode='edit' editNote={note}/>
                 return(
                     <div className='todo-item' key={note.id}>
-                        <p className="todo-item__title" 
-                            style={{opacity: note.checked ? 0.5 : 1,textDecoration: note.checked ? 'line-through' : 'none'}}
-                            onClick={() => checkNote(note.id)}
-                        >
-                            {note.title}
-                        </p>
-                        <div>
-                            <p className="todo-item__line"></p>
+                        <div onClick={() => checkNote(note.id)}>
+                            <p className="todo-item__title" 
+                                style={{opacity: note.checked ? 0.5 : 1,textDecoration: note.checked ? 'line-through' : 'none'}}
+                                onClick={() => checkNote(note.id)}
+                            >
+                                {note.title}
+                            </p>
+                            <p className='todo-item__body'>{note.body}</p>
+                            <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span>
+                                                        {note.tagArray.map((item, index) => <span key={index} className='todo-item__tag'>{item}</span>)}                             
+                            </p>
                         </div>
-                        <p className='todo-item__body' onClick={() => checkNote(note.id)}>{note.body}</p>
-                        <p className='todo-item__body'><span className='todo-item__body--bold'>Tags:</span>
-                                                    {note.tagArray.map((item, index) => <span key={index} className='todo-item__tag'>{item}</span>)}                             
-                        </p>
+                
                         <div className='todo-item__buttons'>
                             <MyButton>Open</MyButton>
                             <MyButton onClick={() => selectNotesEdit(note.id)}>Edit</MyButton>

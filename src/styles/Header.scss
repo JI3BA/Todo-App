@@ -3,10 +3,9 @@
 .todo-list{
 
     &__header{
+        @include borderShadow();
         width: 100%;
         font-family: $text-name, sans-serif;
-        color: $text-color-gray;
-        border: $border;
         padding: 10px;
         margin-top: 20px;
     }
@@ -16,7 +15,7 @@
     }
 
     &__buttons{
-        @include flexCenter()
+        @include flexEnd()
     } 
 
     &__tags{

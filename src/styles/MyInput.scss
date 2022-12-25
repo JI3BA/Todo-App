@@ -1,11 +1,11 @@
 @import './TodoList.scss';
 
 .input{
+    @include borderShadow();
     max-width: 100%;
     width: 100%;
-    border: $border-violet;
-    font-family: $text-name;
-    color: $text-color-gray;
+    border: transparent;
+    box-shadow: 0 0 3px 3px $text-color-gray;
     font-weight: $text-bold;
     padding: 10px;
     outline: none;

@@ -2,19 +2,21 @@
 @import './App.scss';
 
 .button{
-    max-width: 30%;
+    max-width: 10%;
     width: 100%;
     padding: 10px;
-    background-color: #ffffff;
-    border: $border;
+    background-color: $text-color-gray;
+    border: transparent;
     font-family: $text-name;
-    color: $text-color-gray;
+    border-radius: 20px;
+    color: #ffffff;
     font-weight: $text-bold;
     transition: 500ms;
     cursor: pointer;
 
     &:hover{
-        border: $border-violet;
+        background-color: #22ce00;
+        color: $text-color-gray;
     }
 
     &:active{

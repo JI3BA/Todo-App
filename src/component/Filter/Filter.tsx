@@ -1,7 +1,7 @@
-import {ChangeEvent, FC, useEffect, useMemo, useState} from 'react'
+import {ChangeEvent, FC} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Filter.scss'
-import { filterTag, useNote } from '../../context'
+import { useNote } from '../../context'
 
 const Filter: FC = () => {
     const {filtered, setFilter} = useNote()
@@ -12,15 +12,11 @@ const Filter: FC = () => {
 
     return(
         <div className='filter__container'>
-            <div> 
-                <p className="filter__line"></p>
-            </div>
+    
             <div>
-                <MyInput placeholder='Search' value={filtered} onChange={onChangeFilter}/>
+                <MyInput placeholder='Search by tags' value={filtered} onChange={onChangeFilter}/>
             </div>
-            <div>
-                <p className="filter__line"></p>
-            </div>
+            
         </div>
     )
 }

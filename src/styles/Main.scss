@@ -5,10 +5,10 @@
     @include flexColumnCenter();
     max-width: 100%;
     width: 100%;
+    font-family: $text-name, sans-serif;
 
     &__title{
         margin-top: 10px;
-        font-family: $text-name, sans-serif;
         color: $text-color-gray;
     }
 }
@@ -16,8 +16,7 @@
 .todo-item{
     max-width: 100%;
     width: 100%;
-    color: $text-color-gray;
-    border: $border;
+    @include borderShadow();
     margin: 10px 0;
 
     &__title{
@@ -36,14 +35,18 @@
     }
 
     &__tag{
-        border: $border;
+        background-color: $text-color-gray;
+        color: #ffffff;
+        border: 2px solid transparent;
         border-radius: 5px;
         padding: 5px;
         margin: 0 5px;
         transition: 0.3s;
         
         &:hover{
-            box-shadow: inset 0 0 1px 1px $light-blue;
+            background-color: #ffffff;
+            color: $text-color-gray;
+            border: 2px solid $text-color-gray;
         }
     }
 
