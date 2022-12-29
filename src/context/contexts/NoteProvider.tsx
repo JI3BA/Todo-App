@@ -35,27 +35,6 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
     setNotes(note => note.filter(note => note.id !== id))
   }
 
-  // note.filter(note => note.tagArray.map(tagNote => tagNote.toLowerCase().includes((tag).toLowerCase())))
-
-  // const filterNote = (tag: filterTag): Note[] => {
-  //   if(tag){
-  //     return [...notes].filter(note => note.title.toLowerCase().includes((tag).toLowerCase()))
-  //   }else{
-  //     return notes
-  //   }
-  // }
-
-  // const filterNote = useMemo<void | Note[]>(() => {
-  //   console.log('useMemo отработала' + ' ' + filtered);
-  //   if(filtered){
-  //       return notes.filter(note => note.title.toLowerCase().includes(filtered.toLowerCase()))
-  //   }else{
-  //       return notes
-  //   }
-  // }, [notes, filtered])
-
-  // console.log(filterNote)
-
   const setFilter = (filter: filterTag) =>{
       setFiltered(filter)
   } 
@@ -70,8 +49,6 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
               })
           )
   }
-
-  useEffect(() => console.log(filtered), [filtered])
 
   const value = useMemo(
     () => ({

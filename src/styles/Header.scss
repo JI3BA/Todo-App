@@ -19,12 +19,50 @@
     } 
 
     &__tags{
-        @include flexStart()
+        @include flexStart();
+        @include borderShadow();
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+        border: transparent;
+        box-shadow: 0 0 3px 3px $text-color-gray;
+        font-weight: $text-bold;
     }
 }
 
 .tags{
+    &__name{
+        @include flexStart();
+        background-color: $text-color-gray;
+        color: #ffffff;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        margin: 0 5px;
+        padding: 2px 5px;
+        height: 30px;
+        align-items: center;
+    }
+}
+
+.input{
+
     &__container{
-        @include flexStart()
+        position: relative;
+        z-index: 1;
+    }
+
+    &__error{
+        position: absolute;
+        top: -10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $text-color-gray;
+        font-size: 12px;
+        color:#ffffff;
+        z-index: 2;
+    }
+
+    &__none{
+        display: none;
     }
 }

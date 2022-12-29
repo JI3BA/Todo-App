@@ -5,10 +5,26 @@
     max-width: 100%;
     width: 100%;
     border: transparent;
+    color: $text-color-gray;
     box-shadow: 0 0 3px 3px $text-color-gray;
     font-weight: $text-bold;
     padding: 10px;
     outline: none;
+
+    &__tags{
+        border-radius: 10px;
+        padding: 10px;
+        outline: none;
+        border: none;
+        max-width: 100%;
+        width: 100%;
+        color: $text-color-gray;
+        font-weight: $text-bold;
+    }
+
+    &::placeholder{
+        font-weight: $text-bold;
+    }
 
     &:nth-child(2){
         margin: 10px 0;

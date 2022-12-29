@@ -1,12 +1,13 @@
 import '../../styles/MyInput.scss'
 
-interface InputProps{
+export interface InputProps{
     placeholder: string,
-    value?: string,
+    value: string,
     name?: string,
-    onChange?: React.ChangeEventHandler,
+    onChange: React.ChangeEventHandler,
     onKeyDown?: React.KeyboardEventHandler,
-    onKeyUp?: React.KeyboardEventHandler
+    onKeyUp?: React.KeyboardEventHandler,
+    onBlur?: React.FocusEventHandler,
 }
 
 

@@ -5,6 +5,7 @@ import '../../fonts/Fonts.scss'
 interface ButtonProps{
     children: React.ReactNode,
     onClick?: React.MouseEventHandler<HTMLButtonElement>,
+    disabled?: boolean
 }
 
 const MyButton = ({children, onClick, ...rest}: ButtonProps) => {
