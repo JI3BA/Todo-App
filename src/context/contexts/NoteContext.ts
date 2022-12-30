@@ -21,7 +21,6 @@ export interface NoteContextProps {
   checkNote: (id: Note['id']) => void;
   selectNotesEdit: (todoId: Note['id']) => void;
   setFilter: (filter: filterTag) => void;
-  //filterNote: () => Note[];
 }
 
 export const NoteContext = React.createContext<NoteContextProps>({
@@ -34,5 +33,4 @@ export const NoteContext = React.createContext<NoteContextProps>({
     checkNote: () => {},
     selectNotesEdit: () => {},
     setFilter: () => {},
-    //filterNote: () => [],
 });
