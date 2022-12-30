@@ -84,9 +84,9 @@ const Header: FC<HeaderProps> = (props) => {
     }
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if(e.target.value.length < 2){
+        if(e.target.value.length < 5){
             setNickDirty(true)
-            setErrorMessage('Add more 2 words')
+            setErrorMessage('Add more five words')
             setFormValid(false) 
         }else{
             setNickDirty(false)
@@ -102,7 +102,7 @@ const Header: FC<HeaderProps> = (props) => {
                         <MyInput placeholder='Title' value={note.title} onChange={onChange} name='title'/>
 
                     <div className='input__container'>
-                        {nickDirty ? <div className='input__error'>{errorMessage}</div> : <div className='input__none'></div>}
+                        {nickDirty ? <div className='input__error'><p className='input__error--message'>{errorMessage}</p></div> : <div className='input__valid'></div>}
                         <MyInput onBlur={onBlur} placeholder='Body' value={note.body} onChange={onChange} name='body'/>
                     </div>
 

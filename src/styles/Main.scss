@@ -5,11 +5,11 @@
     @include flexColumnCenter();
     max-width: 100%;
     width: 100%;
-    font-family: $text-name, sans-serif;
 
     &__title{
         margin-top: 10px;
         color: $text-color-gray;
+        font-family: $text-name, sans-serif;
     }
 }
 
@@ -56,7 +56,42 @@
     }
 
     &__buttons{
-        @include flexBetween();
+        @include flexEnd();
         padding: 10px;
     }
+}
+
+.buttons{
+
+    &__container{
+        @include flexBetween();
+        max-width: 400px;
+        width: 100%;
+    }
+}
+
+.modal{
+    position: relative;
+
+    &__container{
+        position: fixed;
+        max-width: 1000px;
+        width: 500px;
+        max-height: 500px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: #ffffff;
+        box-shadow: 0 0 100px 100px $text-color-gray;
+        border-radius: 20px;
+        overflow: none;
+    }
+
+    &__buttons{
+        position: absolute;
+        top: 8px;
+        right: 15px;
+        cursor: pointer;
+    }
+
 }
