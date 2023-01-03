@@ -8,8 +8,11 @@ interface StoreProviderProps {
 export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
 
   const [notes, setNotes] = useState<Note[]>([])
-  const [notesEdit, setNotesEdit] = useState<Note['id'] | null>(null);
+  const [notesEdit, setNotesEdit] = useState<Note['id'] | null>(0);
   const [filtered, setFiltered] = useState<filterTag>('')
+
+  const [modal, setModal] = useState<boolean>(false)
+  const [modalNote, setModalNote] = useState<Note[]>([])
 
   const addNewNote = ({title, body, tagArray}: Omit<Note, 'id' | 'checked'>): void => {
       setNotes([...notes, {title, body, id: Date.now(), checked: false, tagArray}])      
@@ -50,10 +53,21 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
           )
   }
 
+  const openModalNote = (id: Note['id']): void => {
+    setModalNote(notes.filter(item => item.id === id))
+    setModal(true)
+  }   
+
+  const setModalNotes = (modal: boolean): void => {
+    setModal(modal)
+  }
+
   const value = useMemo(
     () => ({
         notesEdit,
         notes,
+        modal,
+        modalNote,
         filtered,
         removeNote,
         changeNote,
@@ -61,8 +75,10 @@ export const NoteProvider: FC<StoreProviderProps> = ({ children }) => {
         addNewNote,
         selectNotesEdit,
         setFilter,
+        openModalNote,
+        setModalNotes
     }),
-    [notes, filtered, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit, setFilter]
+    [notes, filtered, modal, modalNote, removeNote, changeNote, checkNote, addNewNote, selectNotesEdit, notesEdit, setFilter, openModalNote, setModalNotes]
   );
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;
 };

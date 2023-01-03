@@ -13,6 +13,8 @@ export type filterTag = string
 
 export interface NoteContextProps {
   notes: Note[];
+  modal: boolean;
+  modalNote: Note[];
   filtered: filterTag;
   notesEdit: Note['id'] | null;
   addNewNote: ({ title, body }: Omit<Note, 'id' | 'checked' | 'filterTag'>) => void;
@@ -21,11 +23,15 @@ export interface NoteContextProps {
   checkNote: (id: Note['id']) => void;
   selectNotesEdit: (todoId: Note['id']) => void;
   setFilter: (filter: filterTag) => void;
+  openModalNote: (id: Note['id']) => void;
+  setModalNotes: (modal: boolean) => void;
 }
 
 export const NoteContext = React.createContext<NoteContextProps>({
     notes: [],
     filtered: '',
+    modal: false,
+    modalNote: [],
     notesEdit: null,
     addNewNote: () => {},
     removeNote: () => {},
@@ -33,4 +39,6 @@ export const NoteContext = React.createContext<NoteContextProps>({
     checkNote: () => {},
     selectNotesEdit: () => {},
     setFilter: () => {},
+    openModalNote: () => {},
+    setModalNotes: () => {},
 });

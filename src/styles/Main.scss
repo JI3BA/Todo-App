@@ -18,6 +18,8 @@
     width: 100%;
     @include borderShadow();
     margin: 10px 0;
+    color: $text-color-gray;
+    font-family: $text-name, sans-serif;
 
     &__title{
         font-size: 20px;
@@ -68,30 +70,4 @@
         max-width: 400px;
         width: 100%;
     }
-}
-
-.modal{
-    position: relative;
-
-    &__container{
-        position: fixed;
-        max-width: 1000px;
-        width: 500px;
-        max-height: 500px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        background-color: #ffffff;
-        box-shadow: 0 0 100px 100px $text-color-gray;
-        border-radius: 20px;
-        overflow: none;
-    }
-
-    &__buttons{
-        position: absolute;
-        top: 8px;
-        right: 15px;
-        cursor: pointer;
-    }
-
 }
