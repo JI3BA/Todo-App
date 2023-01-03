@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import {FC, useEffect, useState} from 'react'
 import MyInput from '../MyInput/MyInput'
 import '../../styles/Header.scss'
 import MyButton from '../MyButton/MyButton'
@@ -32,6 +32,12 @@ const Header: FC<HeaderProps> = (props) => {
     const [nickDirty, setNickDirty] = useState<boolean>(true)
     const [errorMessage, setErrorMessage] = useState<string>('')
 
+    useEffect(() => {
+        if(isEdit){
+            setFormValid(true)
+        }
+    }, [isEdit])
+
     const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
 
@@ -41,6 +47,7 @@ const Header: FC<HeaderProps> = (props) => {
 
         addNewNote(note);
         setNote({title: '', body: '', tagArray: []});
+        setFormValid(false)
     };
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
